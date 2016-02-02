@@ -48,3 +48,4 @@ end
 
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'active_model_serializers', '~> 0.9'

@@ -9,7 +9,20 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new
-    @item.name = params[:item][:name]
-  end   
+    @list = List.find(params[:list_id])
+    @item = @list.items.build(item_params)
+
+    if @item.save
+
+    else
+
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:name)
+  end
 
 end
