@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   get 'lists/index'
 
-  devise_for :users
+  # devise_for :users
+
   resources :items
+
+  namespace :api, defaults: { format: :json } do
+    resources :users
+  end
+
   get 'welcome/index'
 
   root 'welcome#index'
