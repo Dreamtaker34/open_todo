@@ -1,3 +1,3 @@
 class ItemSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :created_at
+  attributes :id, :name, :created_at
 end
