@@ -2,11 +2,11 @@ class Api::ListsController < ApiController
   before_action :authenticated?
 
   def create
-    list = List.new(list_params)
+    list = List.new
 
-#   Thinking this:
-#   @user = params([:user][:id])
-#   @user.lists.create(list_params)
+    # Thinking this: didn't work
+    # @user = params([:user][:id])
+    # list = @user.lists.create(list_params)
     if list.save
       render json: list
     else
@@ -25,7 +25,7 @@ class Api::ListsController < ApiController
   end
 
   private
-# look in item api controller?
+  # Can't get the name or user_id to save
   def list_params
     params.require(:list).permit(:name)
   end

@@ -12,9 +12,8 @@ class Api::ItemsController < ApiController
   end
 
   private
-  # Was testing here: tried a few combos and not sure how to get list_id
-  # into the create
+  # Not sure how to get list_id into the create
   def item_params
-    params.require(:list).permit(item: :description)
+    params.require(:item).permit(:description, :list_id)
   end
 end
