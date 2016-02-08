@@ -5,8 +5,8 @@ class Api::ListsController < ApiController
     list = List.new
 
     # Thinking this: didn't work
-    # @user = params([:user][:id])
-    # list = @user.lists.create(list_params)
+    @user = User.find(params[:user_id])
+    list = @user.lists.create(list_params)
     if list.save
       render json: list
     else
@@ -27,6 +27,6 @@ class Api::ListsController < ApiController
   private
   # Can't get the name or user_id to save
   def list_params
-    params.require(:list).permit(:name)
+    params.require(:list).permit(:name, :permission)
   end
 end

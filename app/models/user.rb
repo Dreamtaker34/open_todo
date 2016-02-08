@@ -12,4 +12,6 @@
 class User < ActiveRecord::Base
 
   has_many :lists, dependent: :destroy
+
+  validates_presence_of :username, :password
 end

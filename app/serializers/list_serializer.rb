@@ -7,7 +7,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  name       :string
-#  permission :boolean
+#  permission :integer          default(0)
 #
 
 class ListSerializer < ActiveModel::Serializer

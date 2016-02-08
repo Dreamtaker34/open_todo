@@ -7,10 +7,14 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  name       :string
-#  permission :boolean
+#  permission :integer          default(0)
 #
 
 class List < ActiveRecord::Base
   belongs_to :user
   has_many :items, dependent: :destroy
+
+  enum permission: [:open, :closed]
+
+  validates_presence_of :user_id, :name, :permission
 end
