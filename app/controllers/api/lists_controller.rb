@@ -14,6 +14,7 @@ class Api::ListsController < ApiController
   end
 
   def update
+    # Currently overwrites non-entered fields with null.
     list = List.find(params[:id])
     if list.update(list_params)
       render json: list
