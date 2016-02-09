@@ -4,10 +4,18 @@ class Api::ListsController < ApiController
   def create
     list = List.new
 
-    # Thinking this: didn't work
     @user = User.find(params[:user_id])
     list = @user.lists.create(list_params)
     if list.save
+      render json: list
+    else
+      render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    list = List.find(params[:id])
+    if list.update(list_params)
       render json: list
     else
       render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
@@ -25,7 +33,6 @@ class Api::ListsController < ApiController
   end
 
   private
-  # Can't get the name or user_id to save
   def list_params
     params.require(:list).permit(:name, :permission)
   end
