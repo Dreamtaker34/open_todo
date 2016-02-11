@@ -16,7 +16,7 @@ class Api::ListsController < ApiController
   def update
     # Currently overwrites non-entered fields with null.
     list = List.find(params[:id])
-    if list.update(list_params)
+    if list.update_attributes(list_params)
       render json: list
     else
       render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
@@ -35,6 +35,6 @@ class Api::ListsController < ApiController
 
   private
   def list_params
-    params.require(:list).permit(:name, :permission)
+    params.require(:list).permit(:name, :permission, :user_id)
   end
 end
